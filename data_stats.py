@@ -4,6 +4,8 @@ df = None
 
 flag = 0
 
+pd.set_option('display.max_columns', None)
+
 # Atmos
 for i in range(14):
     day = str(i+1).zfill(2)
@@ -19,9 +21,11 @@ for i in range(14):
         else:
             df = pd.concat([df, dfAux])
 
-print(df.head(20))
+print(df.columns)
 print(df.dtypes)
-print(df.shape)
+print(df.isna().sum())
+print(df.describe())
+
 
 # Aerosol
 
@@ -44,6 +48,7 @@ for i in range(14):
         else:
             df = pd.concat([df, dfAux])
 
-print(df.head(20))
+print(df.columns)
 print(df.dtypes)
-print(df.shape)
+print(df.isna().sum())
+print(df.describe())

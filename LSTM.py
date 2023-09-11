@@ -1,28 +1,37 @@
-# from PIL import Image
-# import numpy
-# im = Image.open('DEM.tif')
-# imarray = numpy.array(im)
-# print(imarray)
+import numpy as np
+import matplotlib.pyplot as plt
+import wandb
+from wandb.keras import WandbCallback
 
-import xarray as xr
-ds = xr.open_dataset("prueba", engine="cfgrib", backend_kwargs={
-                        'filter_by_keys': {'typeOfLevel': 'surface'},
-                        'errors': 'ignore'
-                    })
-
-# Cambiar escala de longitud a [-180, 180], antes 0 - 360
-df = ds.to_dataframe()
-map_function = lambda lon: (lon - 360) if (lon > 180) else lon
-df.reset_index(inplace=True)
-df["longitude"] = df['longitude'].map(map_function)
-
-minLat, minLon, maxLat, maxLon = -10.203889, -78.041111, -8.251944, -77.010278
-lat_filter = (df["latitude"] >= minLat) & (df["latitude"] <= maxLat)
-lon_filter = (df["longitude"] >= minLon) & (df["longitude"] <= maxLon)
-df = df.loc[lat_filter & lon_filter]
-
-df.sort_values(by=['longitude', 'latitude'])
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Conv1D, TimeDistributed, MaxPooling2D, Flatten, LSTM, RepeatVector, Dense, Input
 
 
-# print(df.iloc[[90.0,2.25]])
+def create_model():
+    model = Sequential()
 
+    model.add(Input(shape=(3, 4, 100)))
+    model.add(TimeDistributed(Conv1D(50, 2)))
+    model.add(TimeDistributed(Conv1D(25, 2)))
+    model.add(TimeDistributed(Flatten()))
+
+    # Encoder
+    model.add(LSTM(100, activation='relu'))
+
+    model.add(RepeatVector(2))
+
+    # Decoder
+    model.add(LSTM(100, activation='relu', return_sequences=True))
+
+    # Outputs
+    model.add(TimeDistributed(Dense(30)))
+
+    return model
+
+model = create_model()
+model.compile(optimizer='adam', loss='mse')
+print(model.summary())
+
+
+#wandb.init(entity='wandb', project='LSTM-AIR_QUALITY')
+#history = model.fit(X, Y, epochs=1000, validation_split=0.2, verbose=1, batch_size=3, callbacks=[WandbCallback()])
