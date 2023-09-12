@@ -6,13 +6,13 @@ from wandb.keras import WandbCallback
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Conv1D, TimeDistributed, MaxPooling2D, Flatten, LSTM, RepeatVector, Dense, Input
 
+from build_dataset import read_inputs
 
 def create_model():
     model = Sequential()
 
     model.add(Input(shape=(3, 4, 100)))
     model.add(TimeDistributed(Conv1D(50, 2)))
-    model.add(TimeDistributed(Conv1D(25, 2)))
     model.add(TimeDistributed(Flatten()))
 
     # Encoder
@@ -31,6 +31,8 @@ def create_model():
 model = create_model()
 model.compile(optimizer='adam', loss='mse')
 print(model.summary())
+
+print(read_inputs().shape)
 
 
 #wandb.init(entity='wandb', project='LSTM-AIR_QUALITY')

@@ -57,6 +57,3 @@ def read_inputs():
 def read_outputs():
 
     return
-
-arr = read_inputs()
-print('Shape', arr.shape)
