@@ -1,25 +1,50 @@
-import xarray as xr
-import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import wandb
+from wandb.keras import WandbCallback
 
-def processDataset(fileName, year, month, day):
-    ds = xr.open_dataset(fileName)
-    minLat, minLon, maxLat, maxLon = -10.203889, -78.041111, -8.251944, -77.010278
+import tensorflow as tf
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Conv1D, TimeDistributed, MaxPooling2D, Flatten, GRU, RepeatVector, Dense, Input
 
-    ds = ds.sel(lat=slice(minLat,maxLat), lon=slice(minLon,maxLon))
+from build_dataset import read_inputs, read_outputs
 
-    df = ds.to_dataframe()
-    df.reset_index(inplace=True)
+def create_model():
+    tf.keras.backend.clear_session()
+    model = Sequential()
 
-    print(df.keys)
-    print(df.columns)
+    model.add(Input(shape=(3, 4, 99)))
+    model.add(TimeDistributed(Conv1D(50, 2)))
+    model.add(TimeDistributed(Flatten()))
 
-    #for hour in range(24):
-    #    aux_df = df[df['time'].dt.hour == hour]
-    #    aux_df.to_pickle(f'data/{year}{month}{day}/{year}{month}{day}{str(hour).zfill(2)}.pkl')
-    
-    return
+    # Encoder
+    model.add(GRU(100, activation='relu'))
 
-processDataset('geos_prueba.nc4', '2022', '09', '01')
+    model.add(RepeatVector(2))
 
-#df = pd.read_pickle('data/20220901/2022090108.pkl')
-#print(df.keys, df.shape)
+    # Decoder
+    model.add(GRU(100, activation='relu', return_sequences=True))
+
+    # Outputs
+    model.add(TimeDistributed(Dense(30)))
+
+    return model
+
+model = create_model()
+model.compile(optimizer='adam', loss='mse')
+print(model.summary())
+
+inputs = read_inputs()
+outputs = read_outputs()
+
+
+wandb.init(entity='carhuanchochristian', project='GRU-AIR_QUALITY')
+history = model.fit(inputs, outputs, epochs=100, validation_split=0.2, verbose=1, batch_size=3)
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+plt.savefig('foo.png')

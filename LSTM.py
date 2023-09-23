@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import wandb
 from wandb.keras import WandbCallback
 
+import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Conv1D, TimeDistributed, MaxPooling2D, Flatten, LSTM, RepeatVector, Dense, Input
 
