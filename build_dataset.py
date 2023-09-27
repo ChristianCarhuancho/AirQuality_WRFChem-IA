@@ -22,7 +22,7 @@ def getStepFileFormat(year, month, day, hour):
         hour += 24
 
     return f'{year}{str(month).zfill(2)}{str(day).zfill(2)}{str(hour).zfill(2)}'
-    
+
 
 def read_inputs():
     inputs = []
@@ -46,7 +46,7 @@ def read_inputs():
         inputs.append(sample)
 
         hour += 1
-        
+
         if(hour > 23):
             day += 1
             hour -= 24
@@ -68,11 +68,11 @@ def read_outputs():
         tStr = getStepFileFormat(year, month, day, hour)
         t1Str = getStepFileFormat(year, month, day, hour+1)
 
-        t = np.load(f'data/{tStr[0:8]}/{tStr}')
-        t1 = np.load(f'data/{t1Str[0:8]}/{t1Str}')
+        t = np.load(f'data/{tStr[0:8]}/{tStr}_chem.npy')
+        t1 = np.load(f'data/{t1Str[0:8]}/{t1Str}_chem.npy')
 
-        sample.append(t.flatten())
-        sample.append(t1.flatten())
+        sample.append(t.reshape(54,18,1))
+        sample.append(t1.reshape(54,18,1))
 
         outputs.append(sample)
 
