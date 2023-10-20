@@ -122,7 +122,7 @@ def process_val_date(year, month, day):
         data['UTCDateTime'] = pd.to_datetime(data['UTCDateTime'])
         times = data['UTCDateTime']
         data = data.groupby([times.dt.hour]).pm2_5_atm.mean()
-        values.append(data)
+        values.append(data.values())
 
     return get_date_matrix_outputs(stations, values)
 
