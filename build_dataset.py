@@ -71,8 +71,8 @@ def read_outputs():
         t = np.load(f'data/{tStr[0:8]}/{tStr}_chem.npy')
         t1 = np.load(f'data/{t1Str[0:8]}/{t1Str}_chem.npy')
 
-        sample.append(t.reshape(54,18,1))
-        sample.append(t1.reshape(54,18,1))
+        sample.append(t.reshape(36,18,1))
+        sample.append(t1.reshape(36,18,1))
 
         outputs.append(sample)
 
@@ -83,3 +83,57 @@ def read_outputs():
             hour -= 24
 
     return np.array(outputs)
+
+def getIDWvalue(hour, row, column, stations, values):
+    for i in range(len(stations)):
+        if stations[i]['position'][0] == row and stations[i]['position'][1] == column:
+            return values[i][hour]
+    
+    value = 0
+    for i in range(len(stations)):
+        value += values[i][hour]/((row-stations[i]['position'][0])**2 + (column-stations[i]['position'][1])**2)
+
+    return value
+
+def get_date_matrix_outputs(stations, values):
+    outputs = []
+    matrix_size = (36, 18)
+
+    for hour in range(24):
+        matrix = [[0]*matrix_size[1]]*matrix_size[0]
+
+        # Per element
+        for i in range(matrix_size[0]):
+            for j in range(matrix_size[1]):
+                matrix[i][j] = getIDWvalue(hour, i,j, stations, values)
+
+        outputs.append(matrix)
+
+    return outputs
+
+def process_val_date(year, month, day):
+    stations = [{'name': 'tumpa', 'position': (20,7)}]
+    values = []
+
+    # 24 element array per station
+    for station in stations:
+        filename = f"val_data/{year}{month}{day}/{year}{month}{day}_{station['name']}.csv"
+        data = pd.read_csv(filename)
+        data['UTCDateTime'] = pd.to_datetime(data['UTCDateTime'])
+        times = data['UTCDateTime']
+        data = data.groupby([times.dt.hour]).pm2_5_atm.mean()
+        values.append(data)
+
+    return get_date_matrix_outputs(stations, values)
+
+def read_val_outputs():
+    outputs = []
+
+    year = '2023'
+    month = '09'
+
+    for i in range(2):
+        day = str(i+1).zfill(2)
+        outputs.extend(process_val_date(year, month, day)) 
+
+    return

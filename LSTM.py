@@ -29,11 +29,11 @@ def create_model():
     model.add(LSTM(100, activation='relu', return_sequences=True))
 
     # Outputs
-    model.add(TimeDistributed(Dense(units=18, kernel_initializer='glorot_normal', kernel_regularizer='l2', activation="relu")))
-
     model.add(TimeDistributed(Dense(units=36, kernel_initializer='glorot_normal', kernel_regularizer='l2', activation="relu")))
 
-    model.add(TimeDistributed(Reshape((6,2,3))))
+    model.add(TimeDistributed(Dense(units=18, kernel_initializer='glorot_normal', kernel_regularizer='l2', activation="relu")))
+
+    model.add(TimeDistributed(Reshape((6,3,1))))
 
     model.add(TimeDistributed(Conv2DTranspose(10, (5,5), strides=(3,3), padding='same', kernel_initializer='glorot_normal', kernel_regularizer='l2')))
 
@@ -41,7 +41,7 @@ def create_model():
 
     model.add(TimeDistributed(LeakyReLU()))
 
-    model.add(TimeDistributed(Conv2DTranspose(1, (5,5), strides=(3,3), padding='same', kernel_initializer='glorot_normal', kernel_regularizer='l2')))
+    model.add(TimeDistributed(Conv2DTranspose(1, (5,5), strides=(2,2), padding='same', kernel_initializer='glorot_normal', kernel_regularizer='l2')))
 
     return model
 
