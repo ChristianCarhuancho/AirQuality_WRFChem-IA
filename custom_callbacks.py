@@ -10,3 +10,6 @@ def RMSE_step_t(y_true, y_pred):
 
 def RMSE_step_t_1(y_true, y_pred):
     return tf.sqrt(tf.reduce_mean(tf.square(y_true[:, 1, :] - y_pred[:, 1, :])))
+
+def RMSE_both_steps(y_true, y_pred):
+    return tf.sqrt(tf.reduce_mean(tf.square(y_true - y_pred)))
