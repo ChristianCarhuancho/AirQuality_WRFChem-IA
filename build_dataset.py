@@ -98,7 +98,7 @@ def getIDWvalue(hour, row, column, stations, values):
     
     value = 0
     for i in range(len(stations)):
-        value += values[i][hour]/((row-stations[i]['position'][0])**2 + (column-stations[i]['position'][1])**2)
+        value += values[i][hour]/(6*((row-stations[i]['position'][0])**2 + (column-stations[i]['position'][1])**2))
 
     return value
 
