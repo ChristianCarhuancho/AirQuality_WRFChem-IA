@@ -116,7 +116,7 @@ def get_date_matrix_outputs(year, month, day, stations, values):
         np.save(f'val_data/{year}{month}{day}/{year}{month}{day}{str(hour).zfill(2)}_real.npy', matrix)
 
 def process_val_date(year, month, day):
-    stations = [{'name': 'tumpa', 'position': (20,7)}]
+    stations = [{'name': 'tumpa', 'position': (20,7)}, {'name': 'huaraz', 'position': (31,9)}]
     values = []
 
     # 24 element array per station
