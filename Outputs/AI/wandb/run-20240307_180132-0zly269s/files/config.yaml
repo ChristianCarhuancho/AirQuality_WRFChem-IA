@@ -1,0 +1,37 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.12
+    cli_version: 0.16.4
+    framework: keras
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1709852492.0
+    t:
+      1:
+      - 2
+      - 3
+      - 5
+      - 12
+      - 53
+      - 55
+      2:
+      - 2
+      - 3
+      - 5
+      - 12
+      - 53
+      - 55
+      3:
+      - 3
+      - 8
+      - 23
+      4: 3.10.12
+      5: 0.16.4
+      8:
+      - 5
+      10:
+      - 9
+      13: linux-x86_64

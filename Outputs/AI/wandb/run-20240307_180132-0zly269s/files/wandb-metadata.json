@@ -1,0 +1,214 @@
+{
+    "os": "Linux-6.5.0-21-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-03-07T23:01:33.104819",
+    "startedAt": "2024-03-07T23:01:32.261567",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/aireandino/AI/model.py",
+    "codePathLocal": "model.py",
+    "codePath": "model.py",
+    "host": "phantom",
+    "username": "aireandino",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 16,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2.5204999999999997,
+        "min": 1800.0,
+        "max": 4000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1.871,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3.008,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.404,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.974,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.437,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.914,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.653,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.257,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3.202,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.74,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.769,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.731,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 4.0,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3.073,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2.736,
+            "min": 1800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1.8,
+            "min": 1800.0,
+            "max": 4000.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 3519.256721496582,
+            "used": 1952.6182746887207
+        }
+    },
+    "gpu": "NVIDIA RTX A5500",
+    "gpu_count": 4,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA RTX A5500",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA RTX A5500",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA RTX A5500",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA RTX A5500",
+            "memory_total": 25757220864
+        }
+    ],
+    "memory": {
+        "total": 251.53519821166992
+    }
+}
