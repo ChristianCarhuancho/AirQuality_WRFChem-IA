@@ -59,7 +59,7 @@ def create_model():
 #print(model.summary())
 
 inputs = read_inputs()
-show_input_images(inputs)
+#show_input_images(inputs)
 
 #scaler = StandardScaler()
 
@@ -74,7 +74,9 @@ show_input_images(inputs)
 #inputs_scaled = inputs_scaled.reshape(batch_size, time_steps, X, Y, nFeatures)
 #inputs = inputs_scaled
 
-#outputs = read_outputs()
+outputs = read_outputs()
+show_input_images(outputs)
+
 
 #print('Inputs nan: ', np.sum(np.isnan(inputs)))
 #print('Outputs nan: ', np.sum(np.isnan(outputs)))

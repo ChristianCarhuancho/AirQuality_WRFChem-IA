@@ -229,8 +229,11 @@ def read_test_chem_outputs():
     return np.array(outputs)
 
 def show_input_images(data):
+    print(data.shape)
+
+
     imagen = Image.open('./images/map.png')
-    imagen = imagen.resize((480,840))
+    imagen = imagen.resize((480,840)) # USE 480, 840 for input, output: 420, 840
     imagen_array = np.array(imagen)    
 
     samples = []
@@ -242,14 +245,16 @@ def show_input_images(data):
     samples.append(data[4][1])
 
     for i, sample in enumerate(samples):
-        matrix = sample[:, :, 1]
+        # USE 1 FOR INPUT, 0 FOR OUTPUT
+        matrix = sample[:, :, 0]
         plt.clf()
         print(f'min: {np.min(matrix)}, max: {np.max(matrix)}')
-        heatmap_data = matrix.repeat(120, axis=0).repeat(120, axis=1)
+        heatmap_data = matrix.repeat(12, axis=0).repeat(12, axis=1) # 120 input, 12 output
         fig, ax = plt.subplots()
         ax.set_xticks([])
         ax.set_yticks([])
         ax.imshow(imagen_array)
-        heatmap = ax.imshow(heatmap_data, cmap='Reds', alpha=0.5, vmin=0, vmax=np.max(data[:,:,:,:,1]))
+        # USE 0 AGAIN
+        heatmap = ax.imshow(heatmap_data, cmap='hot', alpha=0.5, vmin=0, vmax=np.max(data[:,:,:,:,0]))
         cbar = fig.colorbar(heatmap)
-        plt.savefig(f'./images/heatmap_{i}.png')
+        plt.savefig(f'./images/heatmap_output_{i}.png')
