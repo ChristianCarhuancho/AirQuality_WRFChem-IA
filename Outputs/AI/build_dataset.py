@@ -233,7 +233,7 @@ def show_input_images(data):
 
 
     imagen = Image.open('./images/map.png')
-    imagen = imagen.resize((480,840)) # USE 480, 840 for input, output: 420, 840
+    imagen = imagen.resize((420,840)) # USE 480, 840 for input, output: 420, 840
     imagen_array = np.array(imagen)    
 
     samples = []
