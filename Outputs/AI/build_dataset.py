@@ -250,6 +250,6 @@ def show_input_images(data):
         ax.set_xticks([])
         ax.set_yticks([])
         ax.imshow(imagen_array)
-        heatmap = ax.imshow(heatmap_data, cmap='Reds', alpha=0.5, vmin=0, vmax=10)
+        heatmap = ax.imshow(heatmap_data, cmap='Reds', alpha=0.5, vmin=0, vmax=np.max(data[:,:,:,:,1]))
         cbar = fig.colorbar(heatmap)
         plt.savefig(f'./images/heatmap_{i}.png')
