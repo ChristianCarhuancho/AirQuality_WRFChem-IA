@@ -1,0 +1,132 @@
+{
+    "os": "Linux-6.5.0-14-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-03-29T23:19:21.556758",
+    "startedAt": "2024-03-29T23:19:20.830472",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/ccarhuancho/AirQuality_WRFChem-IA/Outputs/AI/model.py",
+    "codePathLocal": "model.py",
+    "codePath": "Outputs/AI/model.py",
+    "git": {
+        "remote": "https://github.com/ChristianCarhuancho/AirQuality_WRFChem-IA.git",
+        "commit": "776b34389e31304babc2ab1eea8907202fdbf285"
+    },
+    "email": "a20172665@pucp.edu.pe",
+    "root": "/home/ccarhuancho/AirQuality_WRFChem-IA",
+    "host": "xwing",
+    "username": "ccarhuancho",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 1271.2823125,
+        "min": 800.0,
+        "max": 5150.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4066.091,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 2095.591,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 1797.068,
+            "min": 800.0,
+            "max": 5300.0
+        },
+        {
+            "current": 1964.425,
+            "min": 800.0,
+            "max": 5300.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 1818.777,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 1815.554,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3421.327,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5300.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5300.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5100.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 937.3305015563965,
+            "used": 289.03699493408203
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        }
+    ],
+    "memory": {
+        "total": 125.55005264282227
+    }
+}

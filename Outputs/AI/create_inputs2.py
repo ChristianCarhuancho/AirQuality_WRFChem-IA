@@ -24,6 +24,8 @@ def process_file(year, month, day, hour):
 
     sorted_df.drop(['time', 'step', 'surface', 'hindex', 'valid_time', 'fco2rec', 'sdwe', 'sde', 'veg', 'wilt', 'fldcp', 'sit', 'lsm', 'siconc', 'unknown', 'csnow', 'cicep', 'cfrzr', 'crain', 'slt', 'latitude', 'longitude'], axis=1, inplace=True)
 
+    print(sorted_df.columns)
+
     print(sorted_df.shape)
 
     data = []

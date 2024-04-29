@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+from PIL import Image
 
 def get_volume_from_step(step):
     data = np.load(f'data/{step[0:8]}/{step}_gfs.npy')
@@ -224,3 +227,28 @@ def read_test_chem_outputs():
             hour -= 24
 
     return np.array(outputs)
+
+def show_input_images(data):
+    imagen = Image.open('./images/map.png')
+    imagen = imagen.resize((480,840))
+    imagen_array = np.array(imagen)    
+
+    samples = []
+    samples.append(data[0][0])
+    samples.append(data[0][1])
+    samples.append(data[1][1])
+    samples.append(data[2][1])
+    samples.append(data[3][1])
+    samples.append(data[4][1])
+
+    for i, sample in enumerate(samples):
+        matrix = sample[:, :, 1]
+        plt.clf()
+        heatmap_data = matrix.repeat(120, axis=0).repeat(120, axis=1)
+        fig, ax = plt.subplots()
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.imshow(imagen_array)
+        heatmap = ax.imshow(heatmap_data, cmap='Reds', alpha=0.5, vmin=0, vmax=20)
+        cbar = fig.colorbar(heatmap)
+        plt.savefig(f'./images/heatmap_{i}.png')

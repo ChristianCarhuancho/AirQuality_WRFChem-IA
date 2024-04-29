@@ -8,9 +8,9 @@ from wandb.keras import WandbCallback
 import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Conv2D, TimeDistributed, MaxPooling2D, Flatten, GRU, RepeatVector, Dense, Input, BatchNormalization, Conv2DTranspose, LeakyReLU, Reshape
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam, Nadam
 
-from build_dataset import read_inputs, read_outputs
+from build_dataset import read_inputs, read_outputs, show_input_images
 from custom_callbacks import RMSE_step_t_humidity, RMSE_step_t_1_humidity, RMSE_step_t_wind_dir, RMSE_step_t_1_wind_dir, RMSE_step_t_wind_speed, RMSE_step_t_1_wind_speed
 
 
@@ -52,33 +52,35 @@ def create_model():
     return model
 
 
-model = create_model()
+#model = create_model()
 #model.compile(optimizer=Adam(lr=0.001), loss=custom_loss, metrics=[RMSE_step_t, RMSE_step_t_1])
 
-model.compile(optimizer=Adam(clipvalue=0.5, learning_rate=1e-6), loss='mean_squared_error', metrics=[RMSE_step_t_humidity, RMSE_step_t_1_humidity, RMSE_step_t_wind_dir, RMSE_step_t_1_wind_dir, RMSE_step_t_wind_speed, RMSE_step_t_1_wind_speed])
-print(model.summary())
+#model.compile(optimizer=Nadam(clipvalue=0.5, learning_rate=1e-6), loss='mean_squared_error', metrics=[RMSE_step_t_humidity, RMSE_step_t_1_humidity, RMSE_step_t_wind_dir, RMSE_step_t_1_wind_dir, RMSE_step_t_wind_speed, RMSE_step_t_1_wind_speed])
+#print(model.summary())
 
 inputs = read_inputs()
-scaler = StandardScaler()
+show_input_images(inputs)
 
-batch_size, time_steps, X, Y, nFeatures = inputs.shape
-inputs_reshaped = inputs.reshape(batch_size * time_steps * X * Y, nFeatures)
+#scaler = StandardScaler()
+
+#batch_size, time_steps, X, Y, nFeatures = inputs.shape
+#inputs_reshaped = inputs.reshape(batch_size * time_steps * X * Y, nFeatures)
 
 # Inicializar el scaler y aplicar la normalización
-scaler = StandardScaler()
-inputs_scaled = scaler.fit_transform(inputs_reshaped)
+#scaler = StandardScaler()
+#inputs_scaled = scaler.fit_transform(inputs_reshaped)
 
 # Revertir el cambio de forma
-inputs_scaled = inputs_scaled.reshape(batch_size, time_steps, X, Y, nFeatures)
-inputs = inputs_scaled
+#inputs_scaled = inputs_scaled.reshape(batch_size, time_steps, X, Y, nFeatures)
+#inputs = inputs_scaled
 
-outputs = read_outputs()
+#outputs = read_outputs()
 
-print('Inputs nan: ', np.sum(np.isnan(inputs)))
-print('Outputs nan: ', np.sum(np.isnan(outputs)))
+#print('Inputs nan: ', np.sum(np.isnan(inputs)))
+#print('Outputs nan: ', np.sum(np.isnan(outputs)))
 
-wandb.init(entity='carhuanchochristian', project='GRU-ATMOS')
-history = model.fit(inputs, outputs, epochs=100, validation_split=0.2, verbose=1, batch_size=10, callbacks=[WandbCallback()])
+#wandb.init(entity='carhuanchochristian', project='GRU-ATMOS')
+#history = model.fit(inputs, outputs, epochs=500, validation_split=0.2, verbose=1, batch_size=20, callbacks=[WandbCallback()])
 
 #history = model.fit(inputs, outputs, epochs=100, validation_split=0.2, verbose=1, batch_size=10)
 #plt.plot(history.history['loss'])
