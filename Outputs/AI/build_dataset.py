@@ -244,11 +244,12 @@ def show_input_images(data):
     for i, sample in enumerate(samples):
         matrix = sample[:, :, 1]
         plt.clf()
+        print(f'min: {np.min(matrix)}, max: {np.max(matrix)}')
         heatmap_data = matrix.repeat(120, axis=0).repeat(120, axis=1)
         fig, ax = plt.subplots()
         ax.set_xticks([])
         ax.set_yticks([])
         ax.imshow(imagen_array)
-        heatmap = ax.imshow(heatmap_data, cmap='Reds', alpha=0.5, vmin=0, vmax=20)
+        heatmap = ax.imshow(heatmap_data, cmap='Reds', alpha=0.5, vmin=0, vmax=10)
         cbar = fig.colorbar(heatmap)
         plt.savefig(f'./images/heatmap_{i}.png')
